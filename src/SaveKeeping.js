@@ -3,40 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { doTest } from './redux/actions';
-import Header from './Header';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: 'black',
+      color: 'balck',
       banner: 'hello',
       isOpen: false,
       isEmpty: false,
       val: 0,
     };
-    this.buttonHandler = this.buttonHandler.bind(this);
+    this.buttonHanler = this.buttonHanler.bind(this);
     this.textHandler = this.textHandler.bind(this);
     this.emptyPage = this.emptyPage.bind(this);
     this.valUP = this.valUP.bind(this);
-    console.log(this.props)
-  }
-
-  buttonHandler() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  }
-
-  textHandler(e) {
-    this.setState({
-      banner: e.target.value,
-    })
   }
 
   valUP() {
     this.setState({
       val: this.state.val + 1,
+    });
+  }
+
+  buttonHanler() {
+    this.setState( {
+      isOpen: !this.state.isOpen,
     });
   }
 
@@ -46,34 +38,37 @@ class App extends Component {
     });
   }
 
-  render() {
-    let myVariable = <h1>{this.state.banner}</h1>;
+  textHandler(e) {
+    this.setState({
+      banner: e.target.value,
+    });
+  }
+
+  render() { 
+    let myVariable = <h2>Osbaldo</h2>;
     let myBanner;
+    console.log(this.state.val);
     if (this.state.isOpen) {
-      myBanner = <Header banner={this.state.banner}/>;
+        myBanner = this.state.banner
     }
     if (this.state.isEmpty) {
     return (
-      <div onClick={this.buttonHandler} className="App">
+      <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            {myVariable}
+            I have no idea what I am doing, but I do know that I want to sleep.
           </p>
-          {myBanner}
-          {
-            this.state.isOpen && 
-            <Header banner={this.state.banner}/>
-          }
+          <h2>{myBanner}</h2>
           <input value={this.state.banner} onChange={this.textHandler}/>
-          <button  onClick={this.buttonHandler}>Something</button>
+          <button onClick={this.buttonHanler}>Something</button>
           <button onClick={this.valUP}>Counter</button>
           <p></p>
           <button onClick={this.emptyPage}>Empty</button>
         </header>
       </div>
     );
-     }else {
+    } else {
       return(
         <div className="App">
           <header className="App-header">
@@ -82,6 +77,7 @@ class App extends Component {
         </div>
       );
     }
+    
   }
 }
 
